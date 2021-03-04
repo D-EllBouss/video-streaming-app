@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Loading Path to static files -->
+    {% load staticfiles %}
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Account{% endblock %}</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="{% static 'account/js/main.js' %}"></script>
+
+    <style>
+    @media(max-width: 900px) {
+      .col-md-6{
+        width: 100%;
+        margin-top: 0;
+        margin-left: 38%;
+      }
+    }
+
+    @media(max-width: 600px) {
+      .col-md-6{
+        width: 100%;
+        margin-top: 0;
+        margin-left: 25%;
+      }
+    }
+
+    @media(max-width: 540px) {
+      .col-md-6{
+        width: 100%;
+        margin-top: 0;
+        margin-left: 33%;
+      }
+    }
+
+    @media(max-width: 450px) {
+      .col-md-6{
+        width: 100%;
+        margin-top: 0;
+        margin-left: 25%;
+      }
+    }
+
+    @media(max-width: 360px) {
+      .col-md-6{
+        width: 100%;
+        margin-top: 0;
+        margin-left: 25%;
+      }
+    }
+
+    @media(max-width: 320px) {
+      .col-md-6{
+        width: 100%;
+        margin-top: 0;
+        margin-left: 20%;
+      }
+    }
+
+    @media(max-width: 280px) {
+      .col-md-6{
+        width: 100%;
+        margin-top: 0;
+        margin-left: 15%;
+      }
+    }
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+
+            <!-- Header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'series:index' %}">69Series </a>
+            </div>
+
+            <!-- Items -->
+            <div class="collapse navbar-collapse" id="topNavBar">
+
+                <ul class="nav navbar-nav">
+                {% if user.is_authenticated  %}
+                    <li class="">
+                        <a href="{% url 'series:index' %}">
+                            <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp; Series
+                        </a>
+                    </li>
+                {% endif %}
+                </ul>
+
+                <form class="navbar-form navbar-left" role="search" method="get" action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="q" value="">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated  %}
+                    <li class="dropdown">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-user dropdown" aria-hidden="true"></span>&nbsp;{{ user.username }}
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'account:password_change' %}">change password</a>
+                        </div>
+
+                    </li>
+                    <li class="">
+                        <a href="{% url 'account:user_logout' %}">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="">
+                        <a href="{%  url 'account:user_login' %}" >
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Login</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'account:user_register' %}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Register</a>
+                    </li>
+
+                    {% endif %}
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block javascript %}{% endblock %}
+
+<!--Footer-->
+    <footer>
+        <div id="footer">
+            <center>
+                <small>
+                <br/> <br/>
+                By using this site you agree to and accept our user agreement. If you haven't read the user agreement please do so
+                    <a href="#" >here</a>
+                <br/> <br/>
+                2020 Copyright &copy; D. Ell Bouss <br/>
+                 All rights reserved <br/>
+                </small>
+                -
+                <a href="#" title="Links to all the pages on this website">Sitemap</a>
+            </center>
+        </div>
+    </footer>
+
+</body>
+
+</html>

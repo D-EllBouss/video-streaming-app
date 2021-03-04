@@ -1,0 +1,32 @@
+{% extends "account/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Register user{% endblock %}
+
+{% block content %}
+
+<div class="row text-center vertical-middle-sm">
+    <h1></h1>
+    <p></p>
+    <br>
+</div>
+
+<div class="row text-center vertical-middle-sm">
+    <br>
+    <h2>You have successfully registered</h2>
+
+    <h3>You will be redirected to the Login Page</h3>
+
+    <!-- Function to Redirect to login Page -->
+  <script>
+    function redirect(){
+        window.location.href = "{% url 'account:user_login' %}";
+    }
+    setTimeout(redirect, 3000);
+  </script>
+  <!-- end section Redirect -->
+
+</div>
+
+{% endblock %}
